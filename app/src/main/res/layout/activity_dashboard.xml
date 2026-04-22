@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:fitsSystemWindows="true">
+
+    <!-- Main content area — sits above bottom nav -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Welcome message -->
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Hi, Siddharth!!"
+            android:textColor="#888888"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Today's date -->
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="Today"
+            android:textColor="#888888" />
+
+        <!-- Total balance -->
+        <TextView
+            android:id="@+id/totalBalanceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="₹0"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- Expense / Income / Balance row -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/expenseTotalText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Expense\n₹0"/>
+
+            <TextView
+                android:id="@+id/incomeText"
+                android:layout_width="0dp"
+                android:textColor="#4CAF50"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Income\n₹0"/>
+
+            <TextView
+                android:id="@+id/balanceText"
+                android:layout_width="0dp"
+                android:textColor="#64B5F6"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Balance\n₹0"/>
+
+        </LinearLayout>
+
+        <!-- Transaction list -->
+<!--        <TextView-->
+<!--            android:id="@+id/transactionList"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="No records yet"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="#888888"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginTop="200dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:textAlignment="center"/>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:id="@+id/emptyStateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="No records yet"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textColor="#888888" />
+
+    </LinearLayout>
+
+    <!-- Bottom navigation bar -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="#212121"
+        android:gravity="center_vertical"
+        android:elevation="0dp">
+
+        <TextView
+            android:id="@+id/navRecords"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#64B5F6"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Records"/>
+
+        <TextView
+            android:id="@+id/navCharts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#64B5F6"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Charts"/>
+
+        <!-- Empty space for FAB -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/navReports"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#64B5F6"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Reports"/>
+
+        <TextView
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#64B5F6"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Me"/>
+
+    </LinearLayout>
+
+    <!-- FAB + button — must be last in RelativeLayout to render on top -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/navAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="#2196F3"
+        app:tint="#FFFFFF"
+        app:fabSize="normal"
+        android:elevation="50dp"
+        android:translationZ="50dp"
+        app:pressedTranslationZ="55dp"
+        app:borderWidth="0dp" />
+
+</RelativeLayout>
