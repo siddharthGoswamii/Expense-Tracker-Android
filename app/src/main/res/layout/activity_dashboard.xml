@@ -82,24 +82,11 @@
 
         </LinearLayout>
 
-        <!-- Transaction list -->
-<!--        <TextView-->
-<!--            android:id="@+id/transactionList"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="No records yet"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="#888888"-->
-<!--            android:textSize="14sp"-->
-<!--            android:layout_marginTop="200dp"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:textAlignment="center"/>-->
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoryRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="55dp"
             android:nestedScrollingEnabled="false" />
 
         <TextView
