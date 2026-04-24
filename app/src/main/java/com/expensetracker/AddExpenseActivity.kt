@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import com.expensetracker.api.RetrofitClient
 import com.expensetracker.model.AddExpenseRequest
 import com.expensetracker.model.AddExpenseResponse
@@ -40,6 +41,10 @@ class AddExpenseActivity : AppCompatActivity() {
 
         saveBtn = findViewById(R.id.saveBtn)
         Log.d("FLOW", "saveBtn found: $saveBtn")
+
+        val backBtn = findViewById<TextView>(R.id.backBtn).setOnClickListener {
+            finish()
+        }
 
         // Categories
         val categories = arrayOf("Food", "Travel", "Misc")
