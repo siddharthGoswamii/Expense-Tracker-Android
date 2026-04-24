@@ -39,7 +39,7 @@
         android:textSize="14sp" />
 
     <!-- Login button — blue to purple gradient -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -52,11 +52,11 @@
         android:layout_marginBottom="14dp"/>
 
     <!-- Signup button — teal to green gradient -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signupBtn"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@drawable/signup_btn_bg"
+        android:background="@drawable/btn_login_bg"
         android:backgroundTint="@null"
         android:text="Create Account"
         android:textColor="#FFFFFF"

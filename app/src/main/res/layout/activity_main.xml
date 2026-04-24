@@ -1,31 +1,255 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0F0F0F"
+    android:padding="28dp">
 
-    <EditText
-        android:id="@+id/email"
-        android:hint="Email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <!-- Back button — pinned to top left -->
+    <TextView
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:text="← Back"
+        android:textColor="#888888"
+        android:textSize="15sp"
+        android:paddingTop="6dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="12dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/back_btn_bg"/>
 
-    <EditText
-        android:id="@+id/password"
-        android:hint="Password"
-        android:inputType="textPassword"
+    <!-- Center content -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"/>
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Icon -->
+        <TextView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/icon_bg"
+            android:gravity="center"
+            android:text="₹"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome back"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login to continue tracking"
+            android:textColor="#888888"
+            android:textSize="14sp"
+            android:layout_marginBottom="36dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="#888888"
+            android:textSize="12sp"
+            android:layout_marginBottom="6dp"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/edit_bg"
+            android:hint="you@example.com"
+            android:inputType="textEmailAddress"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="#888888"
+            android:textSize="12sp"
+            android:layout_marginBottom="6dp"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/edit_bg"
+            android:hint="Enter your password"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:layout_marginBottom="28dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/btn_login_bg"
+            android:text="Login"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="#0F0F0F"-->
+<!--    android:gravity="center"-->
+<!--    android:orientation="vertical"-->
+<!--    android:padding="28dp">-->
+
+<!--    &lt;!&ndash; Back arrow &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/backBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="← Back"-->
+<!--        android:textColor="#888888"-->
+<!--        android:textSize="14sp"-->
+<!--        android:layout_marginBottom="32dp"/>-->
+
+<!--    &lt;!&ndash; Icon &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="64dp"-->
+<!--        android:layout_height="64dp"-->
+<!--        android:background="@drawable/icon_bg"-->
+<!--        android:gravity="center"-->
+<!--        android:text="₹"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="28sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginBottom="16dp"/>-->
+
+<!--    &lt;!&ndash; Title &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Welcome back"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginBottom="8dp"/>-->
+
+<!--    &lt;!&ndash; Subtitle &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Login to continue tracking"-->
+<!--        android:textColor="#888888"-->
+<!--        android:textSize="14sp"-->
+<!--        android:layout_marginBottom="36dp"/>-->
+
+<!--    &lt;!&ndash; Email field &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Email"-->
+<!--        android:textColor="#888888"-->
+<!--        android:textSize="12sp"-->
+<!--        android:layout_marginBottom="6dp"/>-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/email"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="52dp"-->
+<!--        android:background="@drawable/edit_bg"-->
+<!--        android:hint="you@example.com"-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:paddingStart="16dp"-->
+<!--        android:paddingEnd="16dp"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="15sp"-->
+<!--        android:layout_marginBottom="16dp"/>-->
+
+<!--    &lt;!&ndash; Password field &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Password"-->
+<!--        android:textColor="#888888"-->
+<!--        android:textSize="12sp"-->
+<!--        android:layout_marginBottom="6dp"/>-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/password"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="52dp"-->
+<!--        android:background="@drawable/edit_bg"-->
+<!--        android:hint="Enter your password"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:paddingStart="16dp"-->
+<!--        android:paddingEnd="16dp"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="15sp"-->
+<!--        android:layout_marginBottom="28dp"/>-->
+
+<!--    &lt;!&ndash; Login button &ndash;&gt;-->
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/loginBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="52dp"-->
+<!--        android:background="@drawable/btn_login_bg"-->
+<!--        android:text="Login"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold"/>-->
+
+<!--</LinearLayout>-->
+
+<!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;    xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:orientation="vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:padding="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;    android:layout_height="match_parent">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <EditText&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/email"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:hint="Email"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <EditText&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/password"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:hint="Password"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:inputType="textPassword"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="10dp"/>&ndash;&gt;-->
 
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:text="Login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"/>
+<!--&lt;!&ndash;    <Button&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/loginBtn"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="Login"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="20dp"/>&ndash;&gt;-->
 
-</LinearLayout>
+<!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->

@@ -29,6 +29,12 @@ class MainActivity : AppCompatActivity() {
         email = findViewById(R.id.email)
         password = findViewById(R.id.password)
         loginBtn = findViewById(R.id.loginBtn)
+        email.setHintTextColor(android.graphics.Color.parseColor("#555555"))
+        password.setHintTextColor(android.graphics.Color.parseColor("#555555"))
+        val backBtn = findViewById<TextView>(R.id.backBtn)
+        backBtn.setOnClickListener {
+            finish() // goes back to previous screen
+        }
 
 
         loginBtn.setOnClickListener {
