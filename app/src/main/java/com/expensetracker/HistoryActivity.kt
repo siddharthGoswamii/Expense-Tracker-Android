@@ -38,7 +38,7 @@ class HistoryActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("MyApp", MODE_PRIVATE)
         val token = sharedPref.getString("token", "")
 
-        RetrofitClient.api.getTransactions("Bearer $token")
+        RetrofitClient.api.getTransactions("Bearer $token", 1, 10)
             .enqueue(object : Callback<GetTransactionResponse> {
 
                 override fun onResponse(

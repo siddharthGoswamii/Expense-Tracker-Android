@@ -28,6 +28,6 @@ class HistoryAdapter(private val list: List<Transaction>) :
         val item = list[position]
         holder.category.text = item.category
         holder.amount.text = "₹${item.amount}"
-        holder.date.text = item.createdAt ?: ""
+//        holder.date.text = item.createdAt ?: ""
     }
 }
