@@ -184,7 +184,7 @@ class DashboardActivity : AppCompatActivity() {
 
     //THIS FUNCTION WILL CREATE A DIALOG BOX WHICH WILL HOLD THE HISTORY OF PARTICULAR TRANSACTION
     private fun showHistoryPopup(transactions: List<Transaction>) {
-        val dialog = Dialog(this)
+        val dialog = Dialog(this, R.style.CustomDialogTheme)
         dialog.setContentView(R.layout.dialog_history)
 
         // Transparent background so only the CardView is visible
