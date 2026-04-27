@@ -1,19 +1,22 @@
 package com.expensetracker
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.expensetracker.api.RetrofitClient
 import com.expensetracker.model.*
-
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -155,10 +158,57 @@ class DashboardActivity : AppCompatActivity() {
         categoryRecyclerView.adapter =
             CategoryAdapter(summaryList) { selected ->
 
-                val intent = Intent(this, HistoryActivity::class.java)
-                intent.putExtra("category", selected.name)
-                startActivity(intent)
+//                val intent = Intent(this, HistoryActivity::class.java)
+//                intent.putExtra("category", selected.name)
+//                startActivity(intent)
+//            }
+                // Step 1 → Filter transactions for this category
+                val filteredTransactions = transactions.filter { transaction ->
+                    transaction.category == selected.name
+                }
+
+                // Step 2 → Show dialog with filtered transactions
+                if (filteredTransactions.isEmpty()) {
+                    // Show message if no transactions found
+                    Toast.makeText(
+                        this,
+                        "No transactions for ${selected.name}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    // Show the popup dialog ✅
+                    showHistoryPopup(filteredTransactions)
+                }
             }
+    }
+
+    //THIS FUNCTION WILL CREATE A DIALOG BOX WHICH WILL HOLD THE HISTORY OF PARTICULAR TRANSACTION
+    private fun showHistoryPopup(transactions: List<Transaction>) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_history)
+
+        // Transparent background so only the CardView is visible
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Set Layout Params for a proper "Pop-up" feel
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        val recyclerView = dialog.findViewById<RecyclerView>(R.id.historyRecyclerView)
+        val closeBtn = dialog.findViewById<TextView>(R.id.closeHistoryBtn)
+        val title = dialog.findViewById<TextView>(R.id.historyTitle)
+
+        // Set up the RecyclerView with your existing HistoryAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = HistoryAdapter(transactions)
+
+        closeBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun showEmptyState() {
@@ -166,11 +216,11 @@ class DashboardActivity : AppCompatActivity() {
         categoryRecyclerView.visibility = View.GONE
     }
 
-    override fun onResume() {
-        super.onResume()
-        loadTransactions()
+        override fun onResume() {
+            super.onResume()
+            loadTransactions()
+        }
     }
-}
 
 
 //package com.expensetracker
