@@ -71,7 +71,11 @@ class MainActivity : AppCompatActivity() {
                     val userName = response.body()?.user?.name
 
                     val sharedPref = getSharedPreferences("MyApp", MODE_PRIVATE)
-                    sharedPref.edit().putString("token", token).apply()
+                    val editor = sharedPref.edit()
+                    editor.putString("token", token)
+                    editor.putString("name", userName) // Add this line to save the name!
+                    editor.apply()
+//                    sharedPref.edit().putString("token", token).apply()
 
 
 //                    Toast.makeText(this@MainActivity, "Login Success", Toast.LENGTH_SHORT).show()

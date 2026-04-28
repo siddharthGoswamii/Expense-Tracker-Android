@@ -31,7 +31,6 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var totalBalanceText: TextView
     private lateinit var expenseTotalText: TextView
     private lateinit var incomeText: TextView
-    private lateinit var balanceText: TextView
     private lateinit var categoryRecyclerView: RecyclerView
     private lateinit var emptyStateText: TextView
 
@@ -49,7 +48,6 @@ class DashboardActivity : AppCompatActivity() {
         totalBalanceText = findViewById(R.id.totalBalanceText)
         expenseTotalText = findViewById(R.id.expenseTotalText)
         incomeText = findViewById(R.id.incomeText)
-        balanceText = findViewById(R.id.balanceText)
         categoryRecyclerView = findViewById(R.id.categoryRecyclerView)
         emptyStateText = findViewById(R.id.emptyStateText)
 
@@ -149,7 +147,6 @@ class DashboardActivity : AppCompatActivity() {
         // Update UI
         expenseTotalText.text = "Expense\n₹$totalExpense"
         incomeText.text = "Income\n₹0"
-        balanceText.text = "Balance\n-₹$totalExpense"
         totalBalanceText.text = "₹$totalExpense"
 
         val summaryList = categoryTotals.map {
