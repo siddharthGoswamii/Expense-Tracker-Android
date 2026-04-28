@@ -15,9 +15,12 @@
         android:theme="@style/Theme.ExpenseTracker"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".HistoryActivity"
+            android:name=".ProfileActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".AuthActivity"
             android:exported="true">

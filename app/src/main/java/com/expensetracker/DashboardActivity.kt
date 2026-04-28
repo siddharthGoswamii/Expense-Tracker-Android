@@ -11,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.expensetracker.api.RetrofitClient
 import com.expensetracker.model.*
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,9 +68,11 @@ class DashboardActivity : AppCompatActivity() {
             Toast.makeText(this, "Opening Records...", Toast.LENGTH_SHORT).show()
         }
 
-        findViewById<TextView>(R.id.navProfile).setOnClickListener {
-            showLogoutConfirmation()
-        }
+        val navProfile = findViewById<LinearLayout>(R.id.navProfile)
+            navProfile.setOnClickListener {
+                startActivityForResult(Intent(this, ProfileActivity::class.java), 100)
+//                startActivity(intent)
+            }
     }
 
     fun loadTransactions() {
@@ -265,46 +270,4 @@ class DashboardActivity : AppCompatActivity() {
             loadTransactions()
         }
 
-    //LOGOUT FUNCTION
-    private fun showLogoutConfirmation() {
-        val builder = android.app.AlertDialog.Builder(this)
-        builder.setTitle("Logout")
-        builder.setMessage("Are you sure you want to logout from ExpenseTracker?")
-
-        builder.setPositiveButton("Logout") { _, _ ->
-            performLogout()
-        }
-
-        builder.setNegativeButton("Cancel") { dialog, _ ->
-            dialog.dismiss()
-        }
-
-        val dialog = builder.create()
-        dialog.show()
-
-        // Optional: Style the buttons to match your "Shine Black" theme
-        dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED)
-        dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.GRAY)
-    }
-
-    private fun performLogout() {
-        // 1. Clear SharedPreferences
-        val sharedPref = getSharedPreferences("MyApp", MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            clear() // Wipes token, name, and everything else
-            apply()
-        }
-
-        // 2. Redirect to Auth/Login Screen
-        val intent = Intent(this, AuthActivity::class.java)
-
-        // CRITICAL: This clears the activity stack so the user
-        // can't click "Back" to see the Dashboard again.
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-
-        startActivity(intent)
-        finish()
-
-        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-    }
 }

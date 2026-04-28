@@ -145,14 +145,30 @@
             android:gravity="center"
             android:text="Reports"/>
 
-        <TextView
+        <LinearLayout
             android:id="@+id/navProfile"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="#64B5F6"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:orientation="vertical"
             android:gravity="center"
-            android:text="Me"/>
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_person"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Me"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -172,5 +188,8 @@
         android:translationZ="50dp"
         app:pressedTranslationZ="55dp"
         app:borderWidth="0dp" />
+
+
+
 
 </RelativeLayout>
