@@ -7,6 +7,7 @@ data class GetTransactionResponse(
 )
 
 data class Transaction(
+    @com.google.gson.annotations.SerializedName("_id") val id: String,
     val category: String,
     val amount: Int
 )

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.expensetracker.model.Transaction
 
-class HistoryAdapter(private val list: List<Transaction>) :
+class HistoryAdapter(private val list: MutableList<Transaction>) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,5 +29,17 @@ class HistoryAdapter(private val list: List<Transaction>) :
         holder.category.text = item.category
         holder.amount.text = "₹${item.amount}"
 //        holder.date.text = item.createdAt ?: ""
+    }
+
+    fun getItemAt(position: Int): Transaction {
+        return list[position]
+    }
+
+    fun removeItem(position: Int) {
+        // Make sure 'list' in your constructor is declared as MutableList<Transaction>
+        if (list is MutableList) {
+            list.removeAt(position)
+            notifyItemRemoved(position)
+        }
     }
 }

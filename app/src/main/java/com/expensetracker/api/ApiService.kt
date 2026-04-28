@@ -2,6 +2,7 @@ package com.expensetracker.api
 
 import com.expensetracker.model.AddExpenseRequest
 import com.expensetracker.model.AddExpenseResponse
+import com.expensetracker.model.DeleteResponse
 import com.expensetracker.model.GetTransactionResponse
 import com.expensetracker.model.LoginRequest
 import com.expensetracker.model.LoginResponse
@@ -9,9 +10,11 @@ import com.expensetracker.model.SignupRequest
 import com.expensetracker.model.SignupResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -33,4 +36,10 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("limit") limit: Int
     ): Call<GetTransactionResponse>
+
+    @DELETE("transactions/{id}")
+    fun deleteTransaction(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): Call<DeleteResponse>
 }
