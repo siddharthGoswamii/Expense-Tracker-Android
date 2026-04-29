@@ -136,6 +136,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         var totalExpense = 0
+        var totalIncome = 0
         val categoryTotals = HashMap<String, Int>()
 
         for (item in transactions) {
@@ -145,9 +146,11 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         // Update UI
-        expenseTotalText.text = "Expense\n₹$totalExpense"
-        incomeText.text = "Income\n₹0"
-        totalBalanceText.text = "₹$totalExpense"
+        expenseTotalText.text = "\n₹${totalExpense.toInt()}"
+        incomeText.text = "\n₹${totalIncome.toInt()}"
+
+        val balance = totalIncome - totalExpense
+        totalBalanceText.text = "₹${balance.toInt()}"
 
         val summaryList = categoryTotals.map {
             CategorySummary(it.key, it.value)

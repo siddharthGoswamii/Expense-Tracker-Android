@@ -9,7 +9,8 @@ data class GetTransactionResponse(
 data class Transaction(
     @com.google.gson.annotations.SerializedName("_id") val id: String,
     val category: String,
-    val amount: Int
+    val amount: Int,
+    val type: String
 )
 data class Pagination(
     val total: Int,
