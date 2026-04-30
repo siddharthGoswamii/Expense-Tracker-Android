@@ -30,16 +30,17 @@
         android:gravity="center">
 
         <!-- Icon -->
-        <TextView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="76dp"
+            android:layout_height="62dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/icon_bg"
             android:gravity="center"
             android:text="+"
             android:textColor="#FFFFFF"
             android:textSize="32sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
+            android:textStyle="bold" />
 
         <!-- Title -->
         <TextView

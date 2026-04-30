@@ -62,9 +62,14 @@ class DashboardActivity : AppCompatActivity() {
             startActivityForResult(Intent(this, AddExpenseActivity::class.java), 100)
         }
 
-        findViewById<TextView>(R.id.navRecords).setOnClickListener {
+        findViewById<LinearLayout>(R.id.navRecords).setOnClickListener {
             Toast.makeText(this, "Opening Records...", Toast.LENGTH_SHORT).show()
         }
+
+        findViewById<LinearLayout>(R.id.navCharts).setOnClickListener {
+            Toast.makeText(this, "Opening Charts...", Toast.LENGTH_SHORT).show()
+        }
+
 
         val navProfile = findViewById<LinearLayout>(R.id.navProfile)
             navProfile.setOnClickListener {
