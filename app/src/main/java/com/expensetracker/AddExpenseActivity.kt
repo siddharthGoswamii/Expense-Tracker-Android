@@ -57,12 +57,6 @@ class AddExpenseActivity : AppCompatActivity() {
 
         spinner.adapter = adapter
 
-        val btn = findViewById<Button>(R.id.addBtn)
-        btn.setOnClickListener {
-            val intent = Intent(this@AddExpenseActivity, AddIncomeActivity::class.java)
-            startActivity(intent)
-        }
-
         saveBtn.setOnClickListener {
 
             Log.d("FLOW", "1 - button clicked")

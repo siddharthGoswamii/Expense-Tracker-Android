@@ -59,7 +59,7 @@ class DashboardActivity : AppCompatActivity() {
 
         val navAdd = findViewById<FloatingActionButton>(R.id.navAdd)
         navAdd.setOnClickListener {
-            startActivityForResult(Intent(this, AddExpenseActivity::class.java), 100)
+            startActivityForResult(Intent(this, ChoiceActivity::class.java), 100)
         }
 
         findViewById<LinearLayout>(R.id.navRecords).setOnClickListener {

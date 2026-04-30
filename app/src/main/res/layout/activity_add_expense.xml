@@ -30,8 +30,7 @@
         android:gravity="center">
 
         <!-- Icon -->
-        <Button
-            android:id="@+id/addBtn"
+        <TextView
             android:layout_width="76dp"
             android:layout_height="62dp"
             android:layout_marginBottom="16dp"

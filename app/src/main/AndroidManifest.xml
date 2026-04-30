@@ -15,11 +15,14 @@
         android:theme="@style/Theme.ExpenseTracker"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ChoiceActivity"
+            android:exported="true" />
+        <activity
             android:name=".AddIncomeActivity"
             android:exported="true" />
         <activity
             android:name=".ProfileActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".HistoryActivity"
             android:exported="true" />
