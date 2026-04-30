@@ -2,6 +2,8 @@ package com.expensetracker.api
 
 import com.expensetracker.model.AddExpenseRequest
 import com.expensetracker.model.AddExpenseResponse
+import com.expensetracker.model.AddIncomeRequest
+import com.expensetracker.model.AddIncomeResponse
 import com.expensetracker.model.DeleteResponse
 import com.expensetracker.model.GetTransactionResponse
 import com.expensetracker.model.LoginRequest
@@ -28,6 +30,12 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body request: AddExpenseRequest
     ): Call<AddExpenseResponse>
+
+    @POST("transactions/add")
+    fun addTransaction(
+        @Header("Authorization") token: String,
+        @Body request: AddIncomeRequest
+    ): Call<AddIncomeResponse>
 
 
     @GET("transactions/all")
