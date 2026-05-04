@@ -39,6 +39,7 @@ class AddIncomeActivity : AppCompatActivity() {
         btnSave.setOnClickListener {
             val amount = etAmount.text.toString()
             val category = spinner.selectedItem.toString()
+            val type: String = "Income"
 
             if (amount.isEmpty()) {
                 Toast.makeText(this, "Enter amount", Toast.LENGTH_SHORT).show()
@@ -47,7 +48,7 @@ class AddIncomeActivity : AppCompatActivity() {
             val sharedPref = getSharedPreferences("MyApp", MODE_PRIVATE)
             val token = sharedPref.getString("token", "")
 
-            val request = AddIncomeRequest(category, amount.toInt())
+            val request = AddIncomeRequest(category, amount.toInt(), type)
 
             RetrofitClient.api.addTransaction("Bearer $token", request)
                 .enqueue(object : Callback<AddIncomeResponse> {

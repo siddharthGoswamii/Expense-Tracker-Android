@@ -67,6 +67,8 @@ class AddExpenseActivity : AppCompatActivity() {
             val enteredAmount = amount.text.toString()
             Log.d("FLOW", "3 - amount: $enteredAmount")
 
+            val type = "Expense"
+
             if (enteredAmount.isEmpty()) {
                 Toast.makeText(this, "Enter amount", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -78,7 +80,7 @@ class AddExpenseActivity : AppCompatActivity() {
             Log.d("FLOW", "5 - token: $token")
 
             Log.d("FLOW", "6 - creating request")
-            val request = AddExpenseRequest(selectedCategory, enteredAmount.toInt())
+            val request = AddExpenseRequest(selectedCategory, enteredAmount.toInt(), type)
             Log.d("FLOW", "7 - calling API")
 
             RetrofitClient.api.addTransaction("Bearer $token", request)

@@ -145,9 +145,19 @@ class DashboardActivity : AppCompatActivity() {
         val categoryTotals = HashMap<String, Int>()
 
         for (item in transactions) {
-            totalExpense += item.amount
-            val current = categoryTotals.getOrDefault(item.category, 0)
-            categoryTotals[item.category] = current + item.amount
+            // 1. Check karo ki transaction Income hai ya Expense
+            Log.d("DEBUG_DATA", "Amount: ${item.amount}, Type: ${item.type}, Category: ${item.category}")
+            if (item.type?.trim().equals("Income", ignoreCase = true)) {
+                // Paisa aaya
+                totalIncome += item.amount
+            } else {
+                // Paisa gaya
+                totalExpense += item.amount
+
+                // 2. Category totals sirf Expenses ke liye maintain karo (Optional but recommended)
+                val current = categoryTotals.getOrDefault(item.category, 0)
+                categoryTotals[item.category] = current + item.amount
+            }
         }
 
         // Update UI
