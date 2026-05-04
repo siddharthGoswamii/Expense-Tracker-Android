@@ -169,10 +169,6 @@ class DashboardActivity : AppCompatActivity() {
         categoryRecyclerView.adapter =
             CategoryAdapter(summaryList) { selected ->
 
-//                val intent = Intent(this, HistoryActivity::class.java)
-//                intent.putExtra("category", selected.name)
-//                startActivity(intent)
-//            }
                 // Step 1 → Filter transactions for this category
                 val filteredTransactions = transactions.filter { transaction ->
                     transaction.category == selected.name
