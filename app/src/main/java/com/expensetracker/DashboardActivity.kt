@@ -67,7 +67,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         findViewById<LinearLayout>(R.id.navCharts).setOnClickListener {
-            Toast.makeText(this, "Opening Charts...", Toast.LENGTH_SHORT).show()
+            startActivityForResult(Intent(this, ChartActivity::class.java), 100)
         }
 
 
