@@ -4,6 +4,7 @@ import com.expensetracker.model.AddExpenseRequest
 import com.expensetracker.model.AddExpenseResponse
 import com.expensetracker.model.AddIncomeRequest
 import com.expensetracker.model.AddIncomeResponse
+import com.expensetracker.model.BreakdownResponse
 import com.expensetracker.model.DeleteResponse
 import com.expensetracker.model.GetTransactionResponse
 import com.expensetracker.model.LoginRequest
@@ -50,4 +51,10 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: String
     ): Call<DeleteResponse>
+
+    @GET("transactions/categories")
+    fun getCategoryBreakdown(
+        @Header("Authorization") token: String,
+        @Query("type") type: String
+    ): Call<BreakdownResponse>
 }

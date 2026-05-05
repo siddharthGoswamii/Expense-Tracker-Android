@@ -88,7 +88,7 @@ class DashboardActivity : AppCompatActivity() {
             return
         }
 
-        val limit = 5
+        val limit = 10
         val allTransactions = mutableListOf<Transaction>()
 
         fun fetchPage(page: Int) {
@@ -183,6 +183,7 @@ class DashboardActivity : AppCompatActivity() {
                 val filteredTransactions = transactions.filter { transaction ->
                     transaction.category == selected.name
                 }
+                Log.d("LIST_CHECK", "Total items found: ${transactions.size}")
 
                 // Step 2 → Show dialog with filtered transactions
                 if (filteredTransactions.isEmpty()) {
