@@ -9,6 +9,7 @@ import com.expensetracker.model.DeleteResponse
 import com.expensetracker.model.GetTransactionResponse
 import com.expensetracker.model.LoginRequest
 import com.expensetracker.model.LoginResponse
+import com.expensetracker.model.ProfileResponse
 import com.expensetracker.model.SignupRequest
 import com.expensetracker.model.SignupResponse
 import retrofit2.Call
@@ -57,4 +58,9 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("type") type: String
     ): Call<BreakdownResponse>
+
+    @GET("auth/profile") // Path yahan dalo (backend ke routes ke hisaab se)
+    fun getProfile(
+        @Header("Authorization") token: String
+    ): Call<ProfileResponse>
 }
