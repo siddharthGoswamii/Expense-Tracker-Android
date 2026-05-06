@@ -1,9 +1,10 @@
 package com.expensetracker.model
 
+import com.google.gson.annotations.SerializedName
+
 data class CategoryBreakdown(
-    @com.google.gson.annotations.SerializedName("_id")
+    @SerializedName("_id")
     val id: String,
-    @com.google.gson.annotations.SerializedName("totalAmount")
     val totalAmount: Int
 )
 
