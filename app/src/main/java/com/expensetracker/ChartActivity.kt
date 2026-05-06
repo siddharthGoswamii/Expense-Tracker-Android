@@ -21,6 +21,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.utils.ColorTemplate
 
 class ChartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,9 @@ class ChartActivity : AppCompatActivity() {
                     fetchCategoryData(selectedLabel)
                 }
             }
-            override fun onNothingSelected() {}
+            override fun onNothingSelected() {
+                loadMainOverview()
+            }
         })
     }
     private fun loadMainOverview() {
@@ -108,8 +111,16 @@ class ChartActivity : AppCompatActivity() {
         val token = getSharedPreferences("MyApp", MODE_PRIVATE).getString("token", "")
         RetrofitClient.api.getCategoryBreakdown("Bearer $token", type).enqueue(object : Callback<BreakdownResponse> {
             override fun onResponse(call: Call<BreakdownResponse>, response: Response<BreakdownResponse>) {
+//                if (response.isSuccessful) {
+//                    updateChartWithCategories(response.body()?.data, type)
+//                }
                 if (response.isSuccessful) {
-                    updateChartWithCategories(response.body()?.data, type)
+                    val dataList = response.body()?.data
+                    if (!dataList.isNullOrEmpty()) {
+                        updateChartWithCategories(dataList, type)
+                    } else {
+                        Toast.makeText(this@ChartActivity, "No categories found for $type", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
             override fun onFailure(call: Call<BreakdownResponse>, t: Throwable) {}
@@ -127,13 +138,31 @@ class ChartActivity : AppCompatActivity() {
             entries.add(com.github.mikephil.charting.data.PieEntry(it.totalAmount.toFloat(), it.id))
         }
 
-        val dataSet = com.github.mikephil.charting.data.PieDataSet(entries, "$type Breakdown")
-        dataSet.colors = com.github.mikephil.charting.utils.ColorTemplate.MATERIAL_COLORS.toList()
+        val dataSet = PieDataSet(entries, "$type Breakdown")
 
-        val data = com.github.mikephil.charting.data.PieData(dataSet)
+        // Vibrant colors for different categories
+        dataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
+        dataSet.sliceSpace = 3f
+        dataSet.valueTextColor = Color.WHITE
+        dataSet.valueTextSize = 14f
+
+        val data = PieData(dataSet)
         pieChart.data = data
-        pieChart.centerText = type
-        pieChart.animateY(1000)
+
+        // Center text ko change karke batao ki hum kya dekh rahe hain
+        pieChart.centerText = "$type\nBreakdown"
+        pieChart.setCenterTextColor(if(type == "Income") Color.GREEN else Color.RED)
+
+        // Smooth transition animation
+        pieChart.animateXY(800, 800)
         pieChart.invalidate()
+//        val dataSet = com.github.mikephil.charting.data.PieDataSet(entries, "$type Breakdown")
+//        dataSet.colors = com.github.mikephil.charting.utils.ColorTemplate.MATERIAL_COLORS.toList()
+//
+//        val data = com.github.mikephil.charting.data.PieData(dataSet)
+//        pieChart.data = data
+//        pieChart.centerText = type
+//        pieChart.animateY(1000)
+//        pieChart.invalidate()
     }
 }
