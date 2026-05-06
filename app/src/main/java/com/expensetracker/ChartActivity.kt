@@ -60,7 +60,7 @@ class ChartActivity : AppCompatActivity() {
                         val dataSet = PieDataSet(entries, "Overview")
                         val colors = ArrayList<Int>()
                         colors.add(android.graphics.Color.GRAY) // Income ke liye Green
-                        colors.add(android.graphics.Color.GRAY)
+                        colors.add(android.graphics.Color.CYAN)
 
                         dataSet.colors = colors
                         dataSet.sliceSpace = 3f // Thoda gap dene ke liye taaki colors alag dikhein
