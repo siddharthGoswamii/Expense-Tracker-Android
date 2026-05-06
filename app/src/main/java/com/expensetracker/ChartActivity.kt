@@ -59,17 +59,40 @@ class ChartActivity : AppCompatActivity() {
 
                         val dataSet = PieDataSet(entries, "Overview")
                         val colors = ArrayList<Int>()
-                        colors.add(android.graphics.Color.GRAY) // Income ke liye Green
-                        colors.add(android.graphics.Color.CYAN)
-
+                        colors.add(android.graphics.Color.parseColor("#00C853")) // Neon Green for Income
+                        colors.add(android.graphics.Color.parseColor("#FF3D00")) // Electric Red for Expense
                         dataSet.colors = colors
-                        dataSet.sliceSpace = 3f // Thoda gap dene ke liye taaki colors alag dikhein
-                        dataSet.valueTextColor = android.graphics.Color.WHITE
-                        dataSet.valueTextSize = 12f
 
+                        dataSet.sliceSpace = 5f            // Slices ke beech ka gap
+                        dataSet.selectionShift = 12f       // Click karne par slice thoda bahar aayega (Glow effect)
+                        dataSet.valueLineColor = android.graphics.Color.WHITE
+                        dataSet.setDrawValues(true)
+
+                        // Chart ke beech mein hole ko transparent aur stylish banao
                         val pieChart = findViewById<PieChart>(R.id.pieChart)
+                        pieChart.isDrawHoleEnabled = true
+                        pieChart.setHoleColor(android.graphics.Color.TRANSPARENT) // Dark theme ke liye
+                        pieChart.holeRadius = 60f // Inner circle size
+                        pieChart.transparentCircleRadius = 65f
+
+// Center Text (Dynamic summary)
+                        pieChart.centerText = "Overview"
+                        pieChart.setCenterTextColor(android.graphics.Color.WHITE)
+                        pieChart.setCenterTextSize(20f)
+
+// Animation: Chart ko ghumte hue load hone do
+                        pieChart.animateY(1400, com.github.mikephil.charting.animation.Easing.EaseInOutQuad)
+
+// Legend (Niche jo labels aate hain unhe style karo)
+                        val l = pieChart.legend
+                        l.verticalAlignment = com.github.mikephil.charting.components.Legend.LegendVerticalAlignment.BOTTOM
+                        l.horizontalAlignment = com.github.mikephil.charting.components.Legend.LegendHorizontalAlignment.CENTER
+                        l.textColor = android.graphics.Color.WHITE
+                        l.textSize = 12f
+
                         pieChart.data = PieData(dataSet)
-                        pieChart.centerText = "Total Summary"
+                        val balance = summaryData.totalIncome - summaryData.totalExpense
+                        pieChart.centerText = "Balance\n₹$balance"
                         pieChart.invalidate()
                     }
                 }
