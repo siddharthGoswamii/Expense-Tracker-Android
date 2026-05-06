@@ -49,15 +49,16 @@ class ChartActivity : AppCompatActivity() {
             override fun onResponse(call: Call<SummaryResponse>, response: Response<SummaryResponse>) {
                 if (response.isSuccessful) {
                     val summaryData = response.body()?.data
+                    android.util.Log.d("CHART_DATA", "Income: ${summaryData?.totalIncome}, Expense: ${summaryData?.totalExpense}")
                     if (summaryData != null) {
                         val entries = ArrayList<PieEntry>()
 
                         // Backend se aayi hui values ko chart me dalo
-                        entries.add(PieEntry(summaryData.totalIncome.toFloat(), "Income"))
-                        entries.add(PieEntry(summaryData.totalExpense.toFloat(), "Expense"))
+                        entries.add(PieEntry(summaryData.totalIncome.toFloat(), "Income", Color.GREEN))
+                        entries.add(PieEntry(summaryData.totalExpense.toFloat(), "Expense", Color.RED))
 
                         val dataSet = PieDataSet(entries, "Overview")
-                        dataSet.colors = arrayListOf(Color.GRAY, Color.RED)
+//                        dataSet.colors = arrayListOf(Color.GREEN, Color.RED)
 
                         val pieChart = findViewById<PieChart>(R.id.pieChart)
                         pieChart.data = PieData(dataSet)
@@ -68,7 +69,7 @@ class ChartActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<SummaryResponse>, t: Throwable) {
-                Toast.makeText(this@ChartActivity, "Network Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ChartActivity, "Network Error",     Toast.LENGTH_SHORT).show()
             }
         })
     }
