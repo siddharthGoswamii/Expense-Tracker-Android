@@ -12,6 +12,7 @@ import com.expensetracker.model.LoginResponse
 import com.expensetracker.model.ProfileResponse
 import com.expensetracker.model.SignupRequest
 import com.expensetracker.model.SignupResponse
+import com.expensetracker.model.SummaryResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -65,7 +66,7 @@ interface ApiService {
     ): Call<ProfileResponse>
 
     @GET("transactions/summary") // Is path ko apne backend routes se verify kar lena
-    fun getMainOverview(
+    fun getSummary(
         @Header("Authorization") token: String
     ): Call<SummaryResponse>
 }
