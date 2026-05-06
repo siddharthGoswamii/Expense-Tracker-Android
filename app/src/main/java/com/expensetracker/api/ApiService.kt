@@ -63,4 +63,9 @@ interface ApiService {
     fun getProfile(
         @Header("Authorization") token: String
     ): Call<ProfileResponse>
+
+    @GET("transactions/summary") // Is path ko apne backend routes se verify kar lena
+    fun getMainOverview(
+        @Header("Authorization") token: String
+    ): Call<SummaryResponse>
 }

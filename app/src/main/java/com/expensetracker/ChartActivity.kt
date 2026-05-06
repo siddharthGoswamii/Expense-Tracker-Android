@@ -23,6 +23,7 @@ class ChartActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_chart)
         val pieChart=findViewById<PieChart>(R.id.pieChart)
+        loadMainOverview()
 
         // 2. Chart Click Listener for Drill-down
         pieChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
@@ -37,8 +38,20 @@ class ChartActivity : AppCompatActivity() {
         })
     }
     private fun loadMainOverview() {
-        // Yahan tum dashboard waali calculation logic use kar sakte ho
-        // ya phir ek separate total-overview API call kar sakte ho.
+        val entries = ArrayList<PieEntry>()
+
+        // Example static data (इसे API response se replace karna)
+        entries.add(PieEntry(5000f, "Income"))
+        entries.add(PieEntry(3000f, "Expense"))
+
+        val dataSet = com.github.mikephil.charting.data.PieDataSet(entries, "Overview")
+        dataSet.colors = arrayListOf(android.graphics.Color.GREEN, android.graphics.Color.RED)
+
+        val pieChart = findViewById<PieChart>(R.id.pieChart)
+        pieChart.data = com.github.mikephil.charting.data.PieData(dataSet)
+        pieChart.centerText = "Total Summary"
+        pieChart.animateY(1000)
+        pieChart.invalidate()
     }
 
     private fun fetchCategoryData(type: String) {
