@@ -54,11 +54,18 @@ class ChartActivity : AppCompatActivity() {
                         val entries = ArrayList<PieEntry>()
 
                         // Backend se aayi hui values ko chart me dalo
-                        entries.add(PieEntry(summaryData.totalIncome.toFloat(), "Income", Color.GREEN))
-                        entries.add(PieEntry(summaryData.totalExpense.toFloat(), "Expense", Color.RED))
+                        entries.add(PieEntry(summaryData.totalIncome.toFloat(), "Income"))
+                        entries.add(PieEntry(summaryData.totalExpense.toFloat(), "Expense"))
 
                         val dataSet = PieDataSet(entries, "Overview")
-//                        dataSet.colors = arrayListOf(Color.GREEN, Color.RED)
+                        val colors = ArrayList<Int>()
+                        colors.add(android.graphics.Color.GRAY) // Income ke liye Green
+                        colors.add(android.graphics.Color.GRAY)
+
+                        dataSet.colors = colors
+                        dataSet.sliceSpace = 3f // Thoda gap dene ke liye taaki colors alag dikhein
+                        dataSet.valueTextColor = android.graphics.Color.WHITE
+                        dataSet.valueTextSize = 12f
 
                         val pieChart = findViewById<PieChart>(R.id.pieChart)
                         pieChart.data = PieData(dataSet)
