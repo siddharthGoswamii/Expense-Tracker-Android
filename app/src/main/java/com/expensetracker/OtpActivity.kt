@@ -39,8 +39,8 @@ class OtpActivity : AppCompatActivity() {
         }
     }
 
-    private fun verifyCode(code: String) {
-        val request = VerifyOtpRequest(userEmail, code)
+    private fun verifyCode(otp: String) {
+        val request = VerifyOtpRequest(userEmail, otp)
 
         RetrofitClient.api.verifyOTP(request).enqueue(object : Callback<VerifyOtpResponse> {
             override fun onResponse(call: Call<VerifyOtpResponse>, response: Response<VerifyOtpResponse>) {
