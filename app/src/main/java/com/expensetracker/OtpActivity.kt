@@ -45,8 +45,19 @@ class OtpActivity : AppCompatActivity() {
         RetrofitClient.api.verifyOTP(request).enqueue(object : Callback<GenericResponse> {
             override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {
+                    val token = response.body()?.token
+                    val userName = intent.getStringExtra("NAME_KEY") // Signup screen se laya hua naam
+
+                    val sharedPref = getSharedPreferences("MyApp", MODE_PRIVATE)
+                    val editor = sharedPref.edit()
+                    editor.putString("token", token)
+                    editor.putString("name", userName)
+                    editor.apply()
+
                     Toast.makeText(this@OtpActivity, "Verified!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@OtpActivity, DashboardActivity::class.java))
+                    val intent = Intent(this@OtpActivity, DashboardActivity::class.java)
+                    intent.putExtra("name", userName)
+                    startActivity(intent)
                     finish()
                 } else {
                     Toast.makeText(this@OtpActivity, "Invalid OTP", Toast.LENGTH_SHORT).show()
