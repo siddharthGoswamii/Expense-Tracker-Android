@@ -11,11 +11,13 @@ import com.expensetracker.model.GetTransactionResponse
 import com.expensetracker.model.LoginRequest
 import com.expensetracker.model.LoginResponse
 import com.expensetracker.model.OtpRequest
+import com.expensetracker.model.OtpResponse
 import com.expensetracker.model.ProfileResponse
 import com.expensetracker.model.SignupRequest
 import com.expensetracker.model.SignupResponse
 import com.expensetracker.model.SummaryResponse
 import com.expensetracker.model.VerifyOtpRequest
+import com.expensetracker.model.VerifyOtpResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -74,9 +76,11 @@ interface ApiService {
     ): Call<SummaryResponse>
     @POST("auth/request-otp")
     fun requestOTP(@Body request: OtpRequest
-    ): Call<GenericResponse>
+    ): Call<OtpResponse>
     @POST("auth/verify-otp")
-    fun verifyOTP(@Body request: VerifyOtpRequest
-    ): Call<GenericResponse>
+    fun verifyOTP(
+        @Header("Authorization") token: String,
+        @Body request: VerifyOtpRequest
+    ): Call<VerifyOtpResponse>
 
 }

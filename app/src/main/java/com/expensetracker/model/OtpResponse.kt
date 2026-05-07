@@ -1,5 +1,6 @@
 package com.expensetracker.model
-data class GenericResponse (
+
+data class OtpResponse(
     val success: Boolean,
     val message: String
 )
