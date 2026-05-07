@@ -101,6 +101,9 @@ class SignupActivity : AppCompatActivity() {
                 userPassword,
 
             )
+            val intent = Intent(this, OtpActivity::class.java)
+            intent.putExtra("EMAIL_KEY", emailField.text.toString())
+            startActivity(intent)
 
             RetrofitClient.api.signup(request).enqueue(object : Callback<SignupResponse> {
 

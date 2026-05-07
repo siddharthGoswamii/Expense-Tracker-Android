@@ -6,6 +6,7 @@ import com.expensetracker.model.AddIncomeRequest
 import com.expensetracker.model.AddIncomeResponse
 import com.expensetracker.model.BreakdownResponse
 import com.expensetracker.model.DeleteResponse
+import com.expensetracker.model.GenericResponse
 import com.expensetracker.model.GetTransactionResponse
 import com.expensetracker.model.LoginRequest
 import com.expensetracker.model.LoginResponse
@@ -72,11 +73,11 @@ interface ApiService {
 
     interface ApiService {
         // 1. OTP Request bhejne ke liye
-        @POST("api/auth/request-otp")
+        @POST("auth/request-otp")
         fun requestOTP(@Body request: Map<String, String>): Call<GenericResponse>
 
         // 2. OTP Verify karne ke liye
-        @POST("api/auth/verify-otp")
+        @POST("auth/verify-otp")
         fun verifyOTP(@Body request: Map<String, String>): Call<GenericResponse>
     }
 }
