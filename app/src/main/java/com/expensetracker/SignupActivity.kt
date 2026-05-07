@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.expensetracker.api.RetrofitClient
 import com.expensetracker.model.GenericResponse
 import com.expensetracker.model.OtpRequest
+import com.expensetracker.model.OtpResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -104,7 +105,7 @@ class SignupActivity : AppCompatActivity() {
 
         val otpReq = OtpRequest(userEmail)
 
-        RetrofitClient.api.requestOTP(otpReq).enqueue(object : Callback<GenericResponse> {
+        RetrofitClient.api.requestOTP(otpReq).enqueue(object : Callback<OtpResponse> {
             override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
                 signupBtn.isEnabled = true
                 signupBtn.text = "Signup"
@@ -125,7 +126,7 @@ class SignupActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<GenericResponse>, t: Throwable) {
+            override fun onFailure(call: Call<OtpResponse>, t: Throwable) {
                 signupBtn.isEnabled = true
                 signupBtn.text = "Signup"
                 Toast.makeText(this@SignupActivity, "Network Error: ${t.message}", Toast.LENGTH_SHORT).show()

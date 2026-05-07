@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.expensetracker.api.RetrofitClient
 import com.expensetracker.model.GenericResponse
 import com.expensetracker.model.VerifyOtpRequest
+import com.expensetracker.model.VerifyOtpResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,7 +43,7 @@ class OtpActivity : AppCompatActivity() {
         val request = VerifyOtpRequest(userEmail, otp)
 
         // Interface mein check karo 'verifyOTP' hi naam hai na?
-        RetrofitClient.api.verifyOTP(request).enqueue(object : Callback<GenericResponse> {
+        RetrofitClient.api.verifyOTP(request).enqueue(object : Callback<VerifyOtpResponse> {
             override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {
                     val token = response.body()?.token
@@ -64,7 +65,7 @@ class OtpActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<GenericResponse>, t: Throwable) {
+            override fun onFailure(call: Call<VerifyOtpResponse>, t: Throwable) {
                 Toast.makeText(this@OtpActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
