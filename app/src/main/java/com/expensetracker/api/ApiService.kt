@@ -10,10 +10,12 @@ import com.expensetracker.model.GenericResponse
 import com.expensetracker.model.GetTransactionResponse
 import com.expensetracker.model.LoginRequest
 import com.expensetracker.model.LoginResponse
+import com.expensetracker.model.OtpRequest
 import com.expensetracker.model.ProfileResponse
 import com.expensetracker.model.SignupRequest
 import com.expensetracker.model.SignupResponse
 import com.expensetracker.model.SummaryResponse
+import com.expensetracker.model.VerifyOtpRequest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -71,10 +73,10 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<SummaryResponse>
     @POST("auth/request-otp")
-    fun requestOTP(@Body request: Map<String, String>
+    fun requestOTP(@Body request: OtpRequest
     ): Call<GenericResponse>
     @POST("auth/verify-otp")
-    fun verifyOTP(@Body request: Map<String, String>
+    fun verifyOTP(@Body request: VerifyOtpRequest
     ): Call<GenericResponse>
 
 }
