@@ -106,7 +106,7 @@ class SignupActivity : AppCompatActivity() {
         val otpReq = OtpRequest(userEmail)
 
         RetrofitClient.api.requestOTP(otpReq).enqueue(object : Callback<OtpResponse> {
-            override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
+            override fun onResponse(call: Call<OtpResponse>, response: Response<OtpResponse>) {
                 signupBtn.isEnabled = true
                 signupBtn.text = "Signup"
 
