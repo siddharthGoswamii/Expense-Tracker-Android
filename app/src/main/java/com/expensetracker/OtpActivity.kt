@@ -39,7 +39,6 @@ class OtpActivity : AppCompatActivity() {
     }
 
     private fun verifyCode(otp: String) {
-        // Ab userEmail error nahi dega
         val request = VerifyOtpRequest(userEmail, otp)
 
         // Interface mein check karo 'verifyOTP' hi naam hai na?
