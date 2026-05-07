@@ -69,4 +69,14 @@ interface ApiService {
     fun getSummary(
         @Header("Authorization") token: String
     ): Call<SummaryResponse>
+
+    interface ApiService {
+        // 1. OTP Request bhejne ke liye
+        @POST("api/auth/request-otp")
+        fun requestOTP(@Body request: Map<String, String>): Call<GenericResponse>
+
+        // 2. OTP Verify karne ke liye
+        @POST("api/auth/verify-otp")
+        fun verifyOTP(@Body request: Map<String, String>): Call<GenericResponse>
+    }
 }
