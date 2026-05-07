@@ -39,12 +39,11 @@ class OtpActivity : AppCompatActivity() {
         }
     }
 
-    private fun verifyCode(otp: String) {
-        val request = VerifyOtpRequest(userEmail, otp)
+    private fun verifyCode(code: String) {
+        val request = VerifyOtpRequest(userEmail, code)
 
-        // Interface mein check karo 'verifyOTP' hi naam hai na?
         RetrofitClient.api.verifyOTP(request).enqueue(object : Callback<VerifyOtpResponse> {
-            override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
+            override fun onResponse(call: Call<VerifyOtpResponse>, response: Response<VerifyOtpResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {
                     val token = response.body()?.token
                     val userName = intent.getStringExtra("NAME_KEY") // Signup screen se laya hua naam

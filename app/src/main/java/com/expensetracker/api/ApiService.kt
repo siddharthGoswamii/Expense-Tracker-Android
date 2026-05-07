@@ -79,7 +79,6 @@ interface ApiService {
     ): Call<OtpResponse>
     @POST("auth/verify-otp")
     fun verifyOTP(
-        @Header("Authorization") token: String,
         @Body request: VerifyOtpRequest
     ): Call<VerifyOtpResponse>
 
