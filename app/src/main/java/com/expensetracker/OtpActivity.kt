@@ -47,7 +47,7 @@ class OtpActivity : AppCompatActivity() {
             override fun onResponse(call: Call<GenericResponse>, response: Response<GenericResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {
                     Toast.makeText(this@OtpActivity, "Verified!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@OtpActivity, MainActivity::class.java))
+                    startActivity(Intent(this@OtpActivity, DashboardActivity::class.java))
                     finish()
                 } else {
                     Toast.makeText(this@OtpActivity, "Invalid OTP", Toast.LENGTH_SHORT).show()
