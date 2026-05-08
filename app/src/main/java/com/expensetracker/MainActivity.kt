@@ -35,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         backBtn.setOnClickListener {
             finish() // goes back to previous screen
         }
+        val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
+        forgotPassword.setOnClickListener {
+            startActivityForResult(Intent(this, ForgetPasswordActivity::class.java), 100)
+        }
 
 
         loginBtn.setOnClickListener {
