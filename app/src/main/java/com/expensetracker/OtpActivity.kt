@@ -15,8 +15,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class OtpActivity : AppCompatActivity() {
-
-    // 1. Variable yahan declare karo
     private lateinit var userEmail: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
