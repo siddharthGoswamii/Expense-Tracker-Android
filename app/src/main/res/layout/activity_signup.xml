@@ -62,7 +62,7 @@
 
         <Button
             android:id="@+id/signupBtn"
-            android:text="Signup"
+            android:text="Send Otp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
