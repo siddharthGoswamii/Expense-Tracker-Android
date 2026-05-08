@@ -38,7 +38,12 @@ class OtpActivity : AppCompatActivity() {
     }
 
     private fun verifyCode(otp: String) {
-        val request = VerifyOtpRequest(userEmail, otp)
+        val userName = intent.getStringExtra("NAME_KEY") ?: ""
+        val userPass = intent.getStringExtra("PASSWORD_KEY") ?: ""
+        val userAvatar = intent.getStringExtra("AVATAR_KEY") ?: ""
+        val userEmail = intent.getStringExtra("EMAIL_KEY") ?: ""
+        
+        val request = VerifyOtpRequest(userEmail, otp, userName, userPass, userAvatar)
 
         RetrofitClient.api.verifyOTP(request).enqueue(object : Callback<VerifyOtpResponse> {
             override fun onResponse(call: Call<VerifyOtpResponse>, response: Response<VerifyOtpResponse>) {
@@ -52,10 +57,13 @@ class OtpActivity : AppCompatActivity() {
                     editor.putString("name", userName)
                     editor.apply()
 
-                    Toast.makeText(this@OtpActivity, "Verified!", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@OtpActivity, DashboardActivity::class.java)
-                    intent.putExtra("name", userName)
-                    startActivity(intent)
+//                    Toast.makeText(this@OtpActivity, "Verified!", Toast.LENGTH_SHORT).show()
+//                    val intent = Intent(this@OtpActivity, DashboardActivity::class.java)
+//                    intent.putExtra("name", userName)
+//                    startActivity(intent)
+//                    finish()
+                    Toast.makeText(this@OtpActivity, "Account Created Successfully!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@OtpActivity, DashboardActivity::class.java))
                     finish()
                 } else {
                     Toast.makeText(this@OtpActivity, "Invalid OTP", Toast.LENGTH_SHORT).show()
