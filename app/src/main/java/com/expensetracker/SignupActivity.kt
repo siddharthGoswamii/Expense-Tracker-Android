@@ -122,7 +122,9 @@ class SignupActivity : AppCompatActivity() {
 
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this@SignupActivity, "Failed to send OTP. Check email or try again.", Toast.LENGTH_LONG).show()
+                    val errorMsg = response.body()?.message ?: "User already exists or Error occurred"
+                    Toast.makeText(this@SignupActivity, errorMsg, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@SignupActivity, "Failed to send OTP. Check email or try again.", Toast.LENGTH_LONG).show()
                 }
             }
 
