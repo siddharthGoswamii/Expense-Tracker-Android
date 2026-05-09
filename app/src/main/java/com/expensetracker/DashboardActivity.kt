@@ -74,7 +74,6 @@ class DashboardActivity : AppCompatActivity() {
         val navProfile = findViewById<LinearLayout>(R.id.navProfile)
             navProfile.setOnClickListener {
                 startActivityForResult(Intent(this, ProfileActivity::class.java), 100)
-//                startActivity(intent)
             }
     }
 
