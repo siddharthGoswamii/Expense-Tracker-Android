@@ -111,9 +111,7 @@ class ChartActivity : AppCompatActivity() {
         val token = getSharedPreferences("MyApp", MODE_PRIVATE).getString("token", "")
         RetrofitClient.api.getCategoryBreakdown("Bearer $token", type).enqueue(object : Callback<BreakdownResponse> {
             override fun onResponse(call: Call<BreakdownResponse>, response: Response<BreakdownResponse>) {
-//                if (response.isSuccessful) {
-//                    updateChartWithCategories(response.body()?.data, type)
-//                }
+
                 if (response.isSuccessful) {
                     val dataList = response.body()?.data
                     if (!dataList.isNullOrEmpty()) {
