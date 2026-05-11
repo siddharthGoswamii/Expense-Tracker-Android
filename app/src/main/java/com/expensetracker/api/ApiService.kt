@@ -13,6 +13,7 @@ import com.expensetracker.model.LoginResponse
 import com.expensetracker.model.OtpRequest
 import com.expensetracker.model.OtpResponse
 import com.expensetracker.model.ProfileResponse
+import com.expensetracker.model.ResetPasswordRequest
 import com.expensetracker.model.SignupRequest
 import com.expensetracker.model.SignupResponse
 import com.expensetracker.model.SummaryResponse
@@ -81,5 +82,10 @@ interface ApiService {
     fun verifyOTP(
         @Body request: VerifyOtpRequest
     ): Call<VerifyOtpResponse>
+
+    @POST("auth/reset-password")
+    fun resetPassword(
+        @Body request: ResetPasswordRequest
+    ): Call<GenericResponse>
 
 }
