@@ -26,6 +26,18 @@ class ForgotPasswordActivity : AppCompatActivity() {
             startActivityForResult(Intent(this, MainActivity::class.java), 100)
             finish()
         }
+
+        emailInput = findViewById(R.id.emailInput)
+        val sendOtpBtn = findViewById<Button>(R.id.sendOtpBtn)
+        sendOtpBtn.setOnClickListener {
+            val email = emailInput.text.toString().trim()
+            if (email.isNotEmpty()) {
+                performOtpRequest(email)
+            } else {
+                Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         val loginLink = findViewById<TextView>(R.id.loginLink)
         loginLink.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -36,12 +48,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
             startActivity(intent)
             finish() // Current activity ko destroy kar do
         }
-        performOtpRequest()
     }
 
-    private fun performOtpRequest() {
-        val userEmail = emailInput.text.toString().trim()
-        val otpReq = ForgotPasswordRequest(userEmail)
+    private fun performOtpRequest(string: String) {
+        val otpReq = ForgotPasswordRequest(string)
 
         RetrofitClient.api.forgotPassword(otpReq).enqueue(object : Callback<ForgotPasswordResponse> {
             override fun onResponse(call: Call<ForgotPasswordResponse>, response: Response<ForgotPasswordResponse>) {
