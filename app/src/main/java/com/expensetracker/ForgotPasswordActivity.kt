@@ -16,6 +16,7 @@ import retrofit2.Response
 
 class ForgotPasswordActivity : AppCompatActivity() {
     private lateinit var emailInput: EditText
+    private lateinit var sendOtpBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
         sendOtpBtn.setOnClickListener {
             val email = emailInput.text.toString().trim()
             if (email.isNotEmpty()) {
+                sendOtpBtn.isEnabled = false
+                sendOtpBtn.text = "Sending OTP..."
                 performOtpRequest(email)
             } else {
                 Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show()
@@ -56,6 +59,12 @@ class ForgotPasswordActivity : AppCompatActivity() {
         RetrofitClient.api.forgotPassword(otpReq).enqueue(object : Callback<ForgotPasswordResponse> {
             override fun onResponse(call: Call<ForgotPasswordResponse>, response: Response<ForgotPasswordResponse>) {
 
+                // Response aate hi button handling (Optional: agar next screen pe ja rahe ho toh zaroorat nahi, par error ke liye chahiye)
+                if (!(response.isSuccessful && response.body()?.success == true)) {
+                    sendOtpBtn.isEnabled = true
+                    sendOtpBtn.text = "Send OTP"
+                }
+
                 if (response.isSuccessful && response.body()?.success == true) {
                     Toast.makeText(this@ForgotPasswordActivity, "OTP sent to your email", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@ForgotPasswordActivity, ResetPasswordActivity::class.java)
@@ -70,6 +79,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ForgotPasswordResponse>, t: Throwable) {
+                sendOtpBtn.isEnabled = true
+                sendOtpBtn.text = "Send OTP"
                 Toast.makeText(this@ForgotPasswordActivity, "Network Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
 
