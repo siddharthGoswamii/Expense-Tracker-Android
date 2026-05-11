@@ -15,7 +15,7 @@
         android:theme="@style/Theme.ExpenseTracker"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ResetPasswordAcitvity"
+            android:name=".ResetPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".ForgetPasswordActivity"
