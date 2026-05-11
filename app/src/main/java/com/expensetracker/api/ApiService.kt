@@ -6,6 +6,8 @@ import com.expensetracker.model.AddIncomeRequest
 import com.expensetracker.model.AddIncomeResponse
 import com.expensetracker.model.BreakdownResponse
 import com.expensetracker.model.DeleteResponse
+import com.expensetracker.model.ForgotPasswordRequest
+import com.expensetracker.model.ForgotPasswordResponse
 import com.expensetracker.model.GenericResponse
 import com.expensetracker.model.GetTransactionResponse
 import com.expensetracker.model.LoginRequest
@@ -88,4 +90,8 @@ interface ApiService {
         @Body request: ResetPasswordRequest
     ): Call<GenericResponse>
 
+    @POST("auth/forgot-password")
+    fun forgotPassword(
+        @Body request: ForgotPasswordRequest
+    ): Call<ForgotPasswordResponse>
 }
