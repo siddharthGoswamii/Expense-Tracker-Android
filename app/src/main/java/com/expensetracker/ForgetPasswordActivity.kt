@@ -19,10 +19,20 @@ class ForgetPasswordActivity : AppCompatActivity() {
             startActivityForResult(Intent(this, MainActivity::class.java), 100)
             finish()
         }
+//        val loginLink = findViewById<TextView>(R.id.loginLink)
+//        loginLink.setOnClickListener {
+//            startActivityForResult(Intent(this, MainActivity::class.java), 100)
+//            finish()
+//        }
         val loginLink = findViewById<TextView>(R.id.loginLink)
         loginLink.setOnClickListener {
-            startActivityForResult(Intent(this, MainActivity::class.java), 100)
-            finish()
+            val intent = Intent(this, MainActivity::class.java)
+
+            // Ye flags stack ko clear kar denge
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+
+            startActivity(intent)
+            finish() // Current activity ko destroy kar do
         }
     }
 }
