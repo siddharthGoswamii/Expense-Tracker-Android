@@ -67,10 +67,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
                 if (response.isSuccessful && response.body()?.success == true) {
                     Toast.makeText(this@ForgotPasswordActivity, "OTP sent to your email", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@ForgotPasswordActivity, ResetPasswordActivity::class.java)
+                    val intent = Intent(this@ForgotPasswordActivity, OtpActivity::class.java)
                     intent.putExtra("email", string)
+                    intent.putExtra("flow", "forgot") // <--- Ye flag decide karega ki aage kahan jana hai
                     startActivity(intent)
-                    finish()
 
                 } else {
                     val errorMsg = response.body()?.message ?: "User not found"
