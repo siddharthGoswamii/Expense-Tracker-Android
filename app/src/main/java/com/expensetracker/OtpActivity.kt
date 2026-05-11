@@ -57,14 +57,22 @@ class OtpActivity : AppCompatActivity() {
                     editor.putString("name", userName)
                     editor.apply()
 
-//                    Toast.makeText(this@OtpActivity, "Verified!", Toast.LENGTH_SHORT).show()
-//                    val intent = Intent(this@OtpActivity, DashboardActivity::class.java)
-//                    intent.putExtra("name", userName)
-//                    startActivity(intent)
-//                    finish()
                     Toast.makeText(this@OtpActivity, "Account Created Successfully!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@OtpActivity, DashboardActivity::class.java))
-                    finish()
+                    val flow = intent.getStringExtra("flow")
+
+                    if (flow == "forgot") {
+                        // Agar forgot flow hai toh Reset Password page par bhejo
+                        val intent = Intent(this@OtpActivity, ResetPasswordActivity::class.java)
+                        intent.putExtra("email", userEmail)
+                        intent.putExtra("otp", otp) // OTP bhi pass kar dena reset page ke liye
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        // Purana Signup flow: Dashboard par bhejo
+                        val intent = Intent(this@OtpActivity, DashboardActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 } else {
                     Toast.makeText(this@OtpActivity, "Invalid OTP", Toast.LENGTH_SHORT).show()
                 }
