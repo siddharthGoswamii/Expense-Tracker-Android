@@ -6,20 +6,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.expensetracker.api.RetrofitClient
 import com.expensetracker.model.ForgotPasswordRequest
 import com.expensetracker.model.ForgotPasswordResponse
-import com.expensetracker.model.OtpRequest
-import com.expensetracker.model.OtpResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ForgetPasswordActivity : AppCompatActivity() {
+class ForgotPasswordActivity : AppCompatActivity() {
     private lateinit var emailInput: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,16 +47,16 @@ class ForgetPasswordActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ForgotPasswordResponse>, response: Response<ForgotPasswordResponse>) {
 
                 if (response.isSuccessful && response.body()?.success == true) {
-                    Toast.makeText(this@ForgetPasswordActivity, "OTP sent to your email", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ForgotPasswordActivity, "OTP sent to your email", Toast.LENGTH_SHORT).show()
 
                 } else {
                     val errorMsg = response.body()?.message ?: "User not found"
-                    Toast.makeText(this@ForgetPasswordActivity, errorMsg, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@ForgotPasswordActivity, errorMsg, Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onFailure(call: Call<ForgotPasswordResponse>, t: Throwable) {
-                Toast.makeText(this@ForgetPasswordActivity, "Network Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgotPasswordActivity, "Network Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
 
         })

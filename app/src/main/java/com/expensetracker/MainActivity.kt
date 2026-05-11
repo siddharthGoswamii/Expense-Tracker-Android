@@ -1,6 +1,5 @@
 package com.expensetracker
 
-import android.R.attr.name
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
         val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
         forgotPassword.setOnClickListener {
-            startActivityForResult(Intent(this, ForgetPasswordActivity::class.java), 100)
+            startActivityForResult(Intent(this, ForgotPasswordActivity::class.java), 100)
         }
 
 
