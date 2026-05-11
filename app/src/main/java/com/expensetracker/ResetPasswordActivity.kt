@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 class ResetPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_reset_password)
 
         val loginLink = findViewById<TextView>(R.id.loginLink)
         loginLink.setOnClickListener {
