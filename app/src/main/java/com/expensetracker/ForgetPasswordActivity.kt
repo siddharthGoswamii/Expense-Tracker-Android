@@ -3,6 +3,7 @@ package com.expensetracker
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +16,11 @@ class ForgetPasswordActivity : AppCompatActivity() {
 
         val backBtn = findViewById<Button>(R.id.backBtn)
         backBtn.setOnClickListener {
+            startActivityForResult(Intent(this, MainActivity::class.java), 100)
+            finish()
+        }
+        val loginLink = findViewById<TextView>(R.id.loginLink)
+        loginLink.setOnClickListener {
             startActivityForResult(Intent(this, MainActivity::class.java), 100)
             finish()
         }
