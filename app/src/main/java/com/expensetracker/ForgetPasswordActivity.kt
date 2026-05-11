@@ -19,11 +19,6 @@ class ForgetPasswordActivity : AppCompatActivity() {
             startActivityForResult(Intent(this, MainActivity::class.java), 100)
             finish()
         }
-//        val loginLink = findViewById<TextView>(R.id.loginLink)
-//        loginLink.setOnClickListener {
-//            startActivityForResult(Intent(this, MainActivity::class.java), 100)
-//            finish()
-//        }
         val loginLink = findViewById<TextView>(R.id.loginLink)
         loginLink.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
