@@ -2,6 +2,8 @@ package com.expensetracker
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,9 +28,9 @@ class ResetPasswordActivity : AppCompatActivity() {
         val email = intent.getStringExtra("email") ?: ""
         val otp = intent.getStringExtra("otp") ?: "" // OtpActivity se pass karwa lena
 
-        etNewPass = findViewById(R.id.etNewPassword)
-        etConfirmPass = findViewById(R.id.etConfirmPassword)
-        btnReset = findViewById(R.id.btnReset)
+        etNewPass = findViewById(R.id.newPassword)
+        etConfirmPass = findViewById(R.id.confirmPassword)
+        btnReset = findViewById(R.id.resetPasswordBtn)
 
         btnReset.setOnClickListener {
             val pass1 = etNewPass.text.toString().trim()
