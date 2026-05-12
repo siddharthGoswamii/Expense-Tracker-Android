@@ -19,6 +19,8 @@ import com.expensetracker.model.ResetPasswordRequest
 import com.expensetracker.model.SignupRequest
 import com.expensetracker.model.SignupResponse
 import com.expensetracker.model.SummaryResponse
+import com.expensetracker.model.VerifyForgotPasswordOtpRequest
+import com.expensetracker.model.VerifyForgotPasswordOtpResponse
 import com.expensetracker.model.VerifyOtpRequest
 import com.expensetracker.model.VerifyOtpResponse
 import retrofit2.Call
@@ -94,4 +96,9 @@ interface ApiService {
     fun forgotPassword(
         @Body request: ForgotPasswordRequest
     ): Call<ForgotPasswordResponse>
+
+    @POST("auth/verify-forgot-otp")
+    fun verifyForgotPasswordOTP(
+        @Body request: VerifyForgotPasswordOtpRequest
+    ): Call<VerifyForgotPasswordOtpResponse>
 }
