@@ -24,36 +24,12 @@ class OtpActivity : AppCompatActivity() {
 
         // 2. Intent se email receive karo (Jo SignupActivity se bheja tha)
         userEmail = intent.getStringExtra("EMAIL_KEY") ?: ""
-        val otp1 = findViewById<EditText>(R.id.otp1)
-        val otp2 = findViewById<EditText>(R.id.otp2)
-        val otp3 = findViewById<EditText>(R.id.otp3)
-        val otp4 = findViewById<EditText>(R.id.otp4)
+
 
 //        val etOtp = findViewById<EditText>(R.id.etOtp)
-        val btnVerify = findViewById<Button>(R.id.btnVerify)
-        otp1.addTextChangedListener {
-            if (it?.length == 1) otp2.requestFocus()
-        }
-        otp2.addTextChangedListener {
-            if (it?.length == 1) otp3.requestFocus()
-            else if (it?.isEmpty() == true) otp1.requestFocus()
-        }
-        otp3.addTextChangedListener {
-            if (it?.length == 1) otp4.requestFocus()
-            else if (it?.isEmpty() == true) otp2.requestFocus()
-        }
-        otp4.addTextChangedListener {
-            if (it?.isEmpty() == true) otp3.requestFocus()
-        }
 
-        btnVerify.setOnClickListener {
-            val otp = "${otp1.text}${otp2.text}${otp3.text}${otp4.text}"
-            if (otp.length == 4) {
-                verifyCode(otp)
-            } else {
-                Toast.makeText(this, "Enter 4 digits", Toast.LENGTH_SHORT).show()
-            }
-        }
+
+
     }
 
     private fun verifyCode(otp: String) {
@@ -77,21 +53,12 @@ class OtpActivity : AppCompatActivity() {
                     editor.apply()
 
                     Toast.makeText(this@OtpActivity, "Account Created Successfully!", Toast.LENGTH_SHORT).show()
-                    val flow = intent.getStringExtra("flow")
 
-                    if (flow == "forgot") {
-                        // Agar forgot flow hai toh Reset Password page par bhejo
-                        val intent = Intent(this@OtpActivity, ResetPasswordActivity::class.java)
-                        intent.putExtra("email", userEmail)
-                        intent.putExtra("otp", otp) // OTP bhi pass kar dena reset page ke liye
-                        startActivity(intent)
-                        finish()
-                    } else {
                         // Purana Signup flow: Dashboard par bhejo
                         val intent = Intent(this@OtpActivity, DashboardActivity::class.java)
                         startActivity(intent)
                         finish()
-                    }
+
                 } else {
                     Toast.makeText(this@OtpActivity, "Invalid OTP", Toast.LENGTH_SHORT).show()
                 }
