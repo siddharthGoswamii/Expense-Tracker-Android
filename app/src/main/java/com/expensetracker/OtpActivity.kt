@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.expensetracker.api.RetrofitClient
 import com.expensetracker.model.GenericResponse
 import com.expensetracker.model.VerifyOtpRequest
@@ -23,14 +24,32 @@ class OtpActivity : AppCompatActivity() {
 
         // 2. Intent se email receive karo (Jo SignupActivity se bheja tha)
         userEmail = intent.getStringExtra("EMAIL_KEY") ?: ""
+        val otp1 = findViewById<EditText>(R.id.otp1)
+        val otp2 = findViewById<EditText>(R.id.otp2)
+        val otp3 = findViewById<EditText>(R.id.otp3)
+        val otp4 = findViewById<EditText>(R.id.otp4)
 
-        val etOtp = findViewById<EditText>(R.id.etOtp)
+//        val etOtp = findViewById<EditText>(R.id.etOtp)
         val btnVerify = findViewById<Button>(R.id.btnVerify)
+        otp1.addTextChangedListener {
+            if (it?.length == 1) otp2.requestFocus()
+        }
+        otp2.addTextChangedListener {
+            if (it?.length == 1) otp3.requestFocus()
+            else if (it?.isEmpty() == true) otp1.requestFocus()
+        }
+        otp3.addTextChangedListener {
+            if (it?.length == 1) otp4.requestFocus()
+            else if (it?.isEmpty() == true) otp2.requestFocus()
+        }
+        otp4.addTextChangedListener {
+            if (it?.isEmpty() == true) otp3.requestFocus()
+        }
 
         btnVerify.setOnClickListener {
-            val code = etOtp.text.toString()
-            if (code.length == 4) {
-                verifyCode(code)
+            val otp = "${otp1.text}${otp2.text}${otp3.text}${otp4.text}"
+            if (otp.length == 4) {
+                verifyCode(otp)
             } else {
                 Toast.makeText(this, "Enter 4 digits", Toast.LENGTH_SHORT).show()
             }

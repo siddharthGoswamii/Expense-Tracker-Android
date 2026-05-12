@@ -1,88 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="#0D0D0D"
+    android:padding="28dp">
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/ic_baseline_mark_email_read_24"
-        app:tint="#BB86FC" />
-
+    <!-- Back button -->
     <TextView
+        android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Verify Email"
-        android:textColor="#FFFFFF"
-        android:textSize="28sp"
-        android:textStyle="bold" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:text="← Back"
+        android:textColor="#666666"
+        android:textSize="15sp"
+        android:paddingTop="6dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="12dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:focusable="true"/>
 
-    <TextView
-        android:id="@+id/tvInstruction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="Please enter the 4-digit code sent to\nyour email address"
-        android:textColor="#999999"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/etOtp"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/otp_input_background"
-        android:gravity="center"
-        android:hint="0000"
-        android:inputType="number"
-        android:letterSpacing="0.5"
-        android:maxLength="4"
-        android:padding="16dp"
-        android:textColor="#BB86FC"
-        android:textColorHint="#333333"
-        android:textSize="32sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/btnVerify"
+    <!-- Center content -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#BB86FC"
-        android:text="Verify &amp; Proceed"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:cornerRadius="12dp" />
-
-    <TextView
-        android:id="@+id/tvTimer"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Resend code in 00:59"
-        android:textColor="#999999"
-        android:textSize="14sp" />
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/btnResend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
-        android:text="Resend OTP"
-        android:textColor="#BB86FC"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+        <!-- Email icon with glow card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="#1A1A2E"
+            app:cardCornerRadius="36dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#44BB86FC"
+            app:strokeWidth="1dp">
 
-</LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="✉"
+                android:textColor="#BB86FC"
+                android:textSize="30sp"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check your email"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Subtitle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We sent a 4-digit code to"
+            android:textColor="#666666"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_marginBottom="2dp"/>
+
+        <!-- Email address highlighted -->
+<!--        <TextView-->
+<!--            android:id="@+id/tvEmail"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="you@example.com"-->
+<!--            android:textColor="#BB86FC"-->
+<!--            android:textSize="13sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginBottom="36dp"/>-->
+
+        <!-- 4 OTP input boxes -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="12dp">
+
+            <!-- Box 1 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="56dp"
+                android:layout_height="62dp"
+                android:layout_marginEnd="10dp"
+                app:cardBackgroundColor="#1A1A2E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#BB86FC"
+                app:strokeWidth="1dp">
+                <EditText
+                    android:id="@+id/otp1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="#BB86FC"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:hint="–"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Box 2 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="56dp"
+                android:layout_height="62dp"
+                android:layout_marginEnd="10dp"
+                app:cardBackgroundColor="#1A1A2E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#BB86FC"
+                app:strokeWidth="1dp">
+                <EditText
+                    android:id="@+id/otp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="#BB86FC"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:hint="–"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Box 3 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="56dp"
+                android:layout_height="62dp"
+                android:layout_marginEnd="10dp"
+                app:cardBackgroundColor="#1A1A2E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#BB86FC"
+                app:strokeWidth="1dp">
+                <EditText
+                    android:id="@+id/otp3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="#BB86FC"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:hint="–" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Box 4 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="56dp"
+                android:layout_height="62dp"
+                app:cardBackgroundColor="#1A1A2E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#BB86FC"
+                app:strokeWidth="1dp">
+                <EditText
+                    android:id="@+id/otp4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="#BB86FC"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:hint="–" />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <!-- Timer -->
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resend code in 00:59"
+            android:textColor="#666666"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_marginBottom="28dp"/>
+
+        <!-- Verify button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVerify"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="Verify &amp; Proceed"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:backgroundTint="#BB86FC"
+            app:cornerRadius="14dp"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Resend row -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Didn't receive code? "
+                android:textColor="#555555"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/btnResend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resend OTP"
+                android:textColor="#BB86FC"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
