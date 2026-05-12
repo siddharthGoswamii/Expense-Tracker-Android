@@ -30,7 +30,7 @@ class ForgotPasswordOtpActivity : AppCompatActivity() {
         val otp3 = findViewById<EditText>(R.id.otp3)
         val otp4 = findViewById<EditText>(R.id.otp4)
 
-        val btnVerify = findViewById<Button>(R.id.btnVerify)
+        btnVerify = findViewById(R.id.btnVerify)
         otp1.addTextChangedListener {
             if (it?.length == 1) otp2.requestFocus()
         }
