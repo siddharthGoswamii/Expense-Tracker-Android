@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.expensetracker.api.RetrofitClient
 import com.expensetracker.model.ForgotPasswordResponse
+import com.expensetracker.model.GenericResponse
+import com.expensetracker.model.ResetPasswordRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,6 +55,7 @@ class ResetPasswordActivity : AppCompatActivity() {
 
             startActivity(intent)
             finish()
+        }
     }
 
     private fun performReset(email: String, otp: String, pass: String) {
@@ -61,28 +64,43 @@ class ResetPasswordActivity : AppCompatActivity() {
 
         val request = ResetPasswordRequest(email, otp, pass)
 
-        RetrofitClient.api.resetPassword(request).enqueue(object :
-            Callback<ForgotPasswordResponse> {
-            override fun onResponse(call: Call<ForgotPasswordResponse>, response: Response<ForgotPasswordResponse>) {
+        RetrofitClient.api.resetPassword(request).enqueue(object : Callback<GenericResponse> {
+            override fun onResponse(
+                call: Call<GenericResponse>,
+                response: Response<GenericResponse>
+            ) {
                 if (response.isSuccessful && response.body()?.success == true) {
-                    Toast.makeText(this@ResetPasswordActivity, "Password reset successful! Please Login.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this@ResetPasswordActivity,
+                        "Password reset successful! Please Login.",
+                        Toast.LENGTH_LONG
+                    ).show()
 
-                    // Direct to Login and Clear Stack
+                        // Direct to Login and Clear Stack
                     val intent = Intent(this@ResetPasswordActivity, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    finish()
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
                 } else {
                     btnReset.isEnabled = true
                     btnReset.text = "RESET PASSWORD"
-                    Toast.makeText(this@ResetPasswordActivity, "Error: ${response.body()?.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@ResetPasswordActivity,
+                            "Error: ${response.body()?.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                 }
             }
 
-            override fun onFailure(call: Call<ForgotPasswordResponse>, t: Throwable) {
+            override fun onFailure(call: Call<GenericResponse>, t: Throwable) {
                 btnReset.isEnabled = true
                 btnReset.text = "RESET PASSWORD"
-                Toast.makeText(this@ResetPasswordActivity, "Network Failure", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@ResetPasswordActivity,
+                    "Network Failure",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
