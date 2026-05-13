@@ -19,7 +19,8 @@
             app:cardBackgroundColor="#212121"
             app:cardCornerRadius="24dp"
             app:cardElevation="0dp"
-            android:visibility="visible">
+            android:visibility="visible"
+            android:layout_marginTop="25dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
