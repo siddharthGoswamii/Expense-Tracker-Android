@@ -1,70 +1,459 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="20dp"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:fillViewport="true">
 
-    <!-- STEP 1 LAYOUT -->
     <LinearLayout
-        android:id="@+id/step1Layout"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <EditText
-            android:id="@+id/name"
-            android:hint="Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/email"
-            android:hint="Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/password"
-            android:hint="Password"
+        <!-- STEP 1: Create Account Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/step1Layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_marginTop="10dp"/>
+            app:cardBackgroundColor="#212121"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            android:visibility="visible">
 
-        <Button
-            android:id="@+id/nextBtn"
-            android:text="Next"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Create account"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Fill in your details to get started"
+                    android:textColor="#AAAAAA"
+                    android:textSize="14sp" />
+
+                <!-- Name Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="#333333"
+                    app:hintEnabled="false"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="#AAAAAA">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full name"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#555555" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Email Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="#333333"
+                    app:hintEnabled="false"
+                    app:startIconDrawable="@drawable/ic_email"
+                    app:startIconTint="#AAAAAA">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email address"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#555555" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Password Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxStrokeColor="#333333"
+                    app:hintEnabled="false"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="#AAAAAA"
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:startIconTint="#AAAAAA">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#555555" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Progress Step 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <View android:layout_width="0dp" android:layout_height="4dp" android:layout_weight="1" android:background="#1DB954" />
+                    <View android:layout_width="0dp" android:layout_height="4dp" android:layout_weight="1" android:layout_marginStart="8dp" android:background="#333333" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Step 1 of 2" android:textColor="#AAAAAA" android:textSize="12sp" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/nextBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="#1DB954"
+                    android:text="Continue"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    app:cornerRadius="12dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- STEP 2: Avatar & Verify Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/step2Layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#212121"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pick your avatar"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Choose one and verify your email"
+                    android:textColor="#AAAAAA"
+                    android:textSize="14sp" />
+
+                <!-- Avatar Selection Grid (Static for now) -->
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:columnCount="3"
+                    android:alignmentMode="alignMargins">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/avatar1"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/avatar_a"
+                        app:strokeColor="#A8A5FF"
+                        app:strokeWidth="3dp"
+                        app:shapeAppearanceOverlay="@style/CircleImage" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/avatar2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/avatar_b"
+                        app:shapeAppearanceOverlay="@style/CircleImage" />
+
+                    <!-- Add more as needed -->
+                </GridLayout>
+
+                <!-- OTP Status Info -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="#2A2A2A"
+                    android:padding="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_email" app:tint="#1DB954" />
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="OTP sent to your email" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Check inbox and spam folder" android:textColor="#AAAAAA" android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Progress Step 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <View android:layout_width="0dp" android:layout_height="4dp" android:layout_weight="1" android:background="#1DB954" />
+                    <View android:layout_width="0dp" android:layout_height="4dp" android:layout_weight="1" android:layout_marginStart="8dp" android:background="#1DB954" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Step 2 of 2" android:textColor="#AAAAAA" android:textSize="12sp" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/signupBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="#1DB954"
+                    android:text="Send OTP"
+                    android:textAllCaps="false"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_send" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/backToStep1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:text="← Back to step 1"-->
+<!--                    android:textColor="#AAAAAA" />-->
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
+</ScrollView>
 
 
-    <!-- STEP 2 LAYOUT -->
-    <LinearLayout
-        android:id="@+id/step2Layout"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/avatar1"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_launcher_foreground"/>
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="#121212"-->
+<!--    android:fillViewport="true">-->
 
-        <ImageView
-            android:id="@+id/avatar2"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_launcher_foreground"/>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="20dp"-->
+<!--        android:gravity="center_horizontal">-->
 
-        <Button
-            android:id="@+id/signupBtn"
-            android:text="Send Otp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+<!--        &lt;!&ndash; STEP 1: Create Account Card &ndash;&gt;-->
+<!--        <com.google.android.material.card.MaterialCardView-->
+<!--            android:id="@+id/step1Layout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:cardBackgroundColor="#212121"-->
+<!--            app:cardCornerRadius="24dp"-->
+<!--            app:cardElevation="0dp"-->
+<!--            android:visibility="visible">-->
 
-</LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="24dp">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Create account"-->
+<!--                    android:textColor="#FFFFFF"-->
+<!--                    android:textSize="24sp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="Fill in your details to get started"-->
+<!--                    android:textColor="#AAAAAA"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                &lt;!&ndash; Input Fields &ndash;&gt;-->
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="24dp"-->
+<!--                    app:boxCornerRadiusBottomEnd="12dp"-->
+<!--                    app:boxCornerRadiusBottomStart="12dp"-->
+<!--                    app:boxCornerRadiusTopEnd="12dp"-->
+<!--                    app:boxCornerRadiusTopStart="12dp"-->
+<!--                    app:boxStrokeColor="#333333"-->
+<!--                    app:hintEnabled="false"-->
+<!--                    app:startIconDrawable="@drawable/ic_person"-->
+<!--                    app:startIconTint="#AAAAAA">-->
+
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:id="@+id/name"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:hint="Full name"-->
+<!--                        android:textColor="#FFFFFF"-->
+<!--                        android:textColorHint="#555555" />-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                &lt;!&ndash; Repeat for Email and Password with their icons &ndash;&gt;-->
+
+<!--                &lt;!&ndash; Progress Bar Step 1 of 2 &ndash;&gt;-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="32dp"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <View-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="4dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="#1DB954" /> &lt;!&ndash; Green line &ndash;&gt;-->
+
+<!--                    <View-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="4dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:background="#333333" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="12dp"-->
+<!--                        android:text="Step 1 of 2"-->
+<!--                        android:textColor="#AAAAAA"-->
+<!--                        android:textSize="12sp" />-->
+<!--                </LinearLayout>-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/nextBtn"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="56dp"-->
+<!--                    android:layout_marginTop="24dp"-->
+<!--                    android:backgroundTint="#1DB954"-->
+<!--                    android:text="Continue"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textColor="#FFFFFF"-->
+<!--                    android:textSize="16sp"-->
+<!--                    app:cornerRadius="12dp"-->
+<!--                    app:iconGravity="textEnd" />-->
+<!--            </LinearLayout>-->
+<!--        </com.google.android.material.card.MaterialCardView>-->
+
+<!--        &lt;!&ndash; STEP 2: Avatar & OTP Card (Initial Visibility: GONE) &ndash;&gt;-->
+<!--        <com.google.android.material.card.MaterialCardView-->
+<!--            android:id="@+id/step2Layout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:cardBackgroundColor="#212121"-->
+<!--            app:cardCornerRadius="24dp"-->
+<!--            android:visibility="gone">-->
+<!--            &lt;!&ndash; Content similar to image_48c6ba.png for Step 2 &ndash;&gt;-->
+<!--        </com.google.android.material.card.MaterialCardView>-->
+
+<!--    </LinearLayout>-->
+<!--</ScrollView>-->
+
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:orientation="vertical"-->
+<!--    android:padding="20dp"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<!--    &lt;!&ndash; STEP 1 LAYOUT &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/step1Layout"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/name"-->
+<!--            android:hint="Name"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/email"-->
+<!--            android:hint="Email"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/password"-->
+<!--            android:hint="Password"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:inputType="textPassword"-->
+<!--            android:layout_marginTop="10dp"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/nextBtn"-->
+<!--            android:text="Next"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--    </LinearLayout>-->
+
+
+<!--    &lt;!&ndash; STEP 2 LAYOUT &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/step2Layout"-->
+<!--        android:orientation="vertical"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/avatar1"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:src="@drawable/ic_launcher_foreground"/>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/avatar2"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:src="@drawable/ic_launcher_foreground"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/signupBtn"-->
+<!--            android:text="Send Otp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--    </LinearLayout>-->
+
+<!--</LinearLayout>-->
