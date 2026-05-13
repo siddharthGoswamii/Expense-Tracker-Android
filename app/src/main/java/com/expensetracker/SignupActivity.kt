@@ -19,8 +19,8 @@ import retrofit2.Response
 
 class SignupActivity : AppCompatActivity() {
 
-    private lateinit var step1Layout: LinearLayout
-    private lateinit var step2Layout: LinearLayout
+    private lateinit var step1Layout: View
+    private lateinit var step2Layout: View
 
     private lateinit var name: EditText
     private lateinit var email: EditText
