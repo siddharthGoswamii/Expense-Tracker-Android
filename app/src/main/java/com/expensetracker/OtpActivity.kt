@@ -25,11 +25,6 @@ class OtpActivity : AppCompatActivity() {
         // 2. Intent se email receive karo (Jo SignupActivity se bheja tha)
         userEmail = intent.getStringExtra("EMAIL_KEY") ?: ""
 
-
-//        val etOtp = findViewById<EditText>(R.id.etOtp)
-
-
-
     }
 
     private fun verifyCode(otp: String) {
