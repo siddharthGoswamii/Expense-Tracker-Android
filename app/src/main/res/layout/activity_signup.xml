@@ -240,15 +240,6 @@
                     app:cornerRadius="12dp"
                     app:icon="@drawable/ic_send" />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/backToStep1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:text="← Back to step 1"-->
-<!--                    android:textColor="#AAAAAA" />-->
-
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
