@@ -18,7 +18,7 @@ class ChoiceActivity : AppCompatActivity() {
 
         cardIncome.setOnClickListener {
             startActivity(Intent(this, AddIncomeActivity::class.java))
-            finish() // Choice page ko band kar dega
+            finish()
         }
 
         cardExpense.setOnClickListener {
