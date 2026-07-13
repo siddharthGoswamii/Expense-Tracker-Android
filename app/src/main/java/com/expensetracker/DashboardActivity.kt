@@ -159,7 +159,7 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
-        // Update UI
+
         expenseTotalText.text = "\n₹${totalExpense.toInt()}"
         incomeText.text = "\n₹${totalIncome.toInt()}"
 
