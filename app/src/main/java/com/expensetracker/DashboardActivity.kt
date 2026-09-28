@@ -280,5 +280,4 @@ class DashboardActivity : AppCompatActivity() {
             super.onResume()
             loadTransactions()
         }
-
 }
